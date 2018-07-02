@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\user\components;
+namespace frontend\modules\user\components;
 
 use frontend\modules\user\models\Auth;
 use Yii;

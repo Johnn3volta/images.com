@@ -3,11 +3,12 @@
 namespace frontend\modules\user\controllers;
 
 
-use common\models\LoginForm;
+
+use frontend\modules\user\models\LoginForm;
+use frontend\modules\user\components\AuthHandler;
 use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
-use frontend\user\components\AuthHandler;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
