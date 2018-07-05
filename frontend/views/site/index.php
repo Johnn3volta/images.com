@@ -1,25 +1,27 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $users \frontend\models\User */
+/* @var $users[] \frontend\models\User */
+/* @var $user \frontend\models\User */
 
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+  <div class="jumbotron">
+    <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+    <p class="lead">You have successfully created your Yii-powered application.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+  </div>
 
-    <div class="body-content">
+  <div class="body-content">
 
-        <?php foreach ($users as $user): ?>
-        <?= \yii\helpers\Html::a($user->username,['/user/profile/view','id' => $user->id]) ?>
-        <?php endforeach; ?>
+      <?php foreach ($users as $user): ?>
+          <?= \yii\helpers\Html::a($user->username,['/user/profile/view','nickname' => $user->getNickName()])?>
+        <hr>
+      <?php endforeach; ?>
 
-    </div>
+  </div>
 </div>

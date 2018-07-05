@@ -12,6 +12,7 @@ return [
         ],
     ],
     'components' => [
+
         'request'      => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -43,7 +44,9 @@ return [
             'enablePrettyUrl' => true,
 //            'enableStrictParsing' => true,
             'showScriptName'  => false,
-            'rules'           => [],
+            'rules'           => [
+                'profile/<nickname:\w+>' => 'user/profile/view'
+            ],
         ],
     ],
     'params'     => $params,
