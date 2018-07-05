@@ -32,6 +32,8 @@ class User extends ActiveRecord implements IdentityInterface{
 
     const STATUS_ACTIVE = 10;
 
+    const NO_IMAGE = '/img/no-image.png';
+
     /**
      * {@inheritdoc}
      */
@@ -294,5 +296,16 @@ class User extends ActiveRecord implements IdentityInterface{
         $ids = $redis->sinter($key1,$key2);
 
         return User::find()->select('id,username,nickname')->where(['id' => $ids])->orderBy('username')->asArray()->all();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPicture(){
+        if($this->picture){
+            return Yii::$app->storage->getFile($this->picture);
+        }
+
+        return self::NO_IMAGE;
     }
 }

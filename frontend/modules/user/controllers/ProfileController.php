@@ -5,9 +5,12 @@ namespace frontend\modules\user\controllers;
 
 
 use frontend\models\User;
+use frontend\modules\user\models\forms\PictureForm;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * Class ProfileController
@@ -23,10 +26,34 @@ class ProfileController extends Controller{
      * @throws \yii\web\NotFoundHttpException
      */
     public function actionView($nickname){
+        $modelPicture = new PictureForm();
+
         return $this->render('view', [
-            'user' => $this->findUser($nickname),
-            'currentUser' => Yii::$app->user->identity
+            'user'         => $this->findUser($nickname),
+            'currentUser'  => Yii::$app->user->identity,
+            'modelPicture' => $modelPicture,
         ]);
+    }
+
+    public function actionUploadPicture(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = new PictureForm();
+        $model->picture = UploadedFile::getInstance($model, 'picture');
+
+        if($model->validate()){
+            /* @var $user User */
+            $user = Yii::$app->user->identity;
+            $user->picture = Yii::$app->storage->saveUploadedFile($model->picture);
+
+            if($user->save(false, ['picture'])){
+                return [
+                    'success'    => true,
+                    'pictureUri' => $user->getPicture(),
+                ];
+            }
+        }
+
+        return ['success' => false, 'errors' => $model->getErrors()];
     }
 
     /**
@@ -104,6 +131,8 @@ class ProfileController extends Controller{
         }
         throw new NotFoundHttpException();
     }
+
+
 
 //    public function actionGenerate(){
 //        $faker = \Faker\Factory::create();
