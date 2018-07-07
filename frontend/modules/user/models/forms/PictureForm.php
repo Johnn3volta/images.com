@@ -73,7 +73,7 @@ class PictureForm extends Model{
     /**
      * @return mixed
      */
-    public function getMaxFileSize(){
+    private function getMaxFileSize(){
         return Yii::$app->params['maxFileSize'];
     }
 }

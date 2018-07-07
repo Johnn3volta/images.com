@@ -16,7 +16,7 @@ use dosamigos\fileupload\FileUpload;
 <hr>
 
 <?= Html::img($user->getPicture(), ['id' => 'profile-picture']) ?>
-<?php if($currentUser->equals($user)): ?>
+<?php if($currentUser && $currentUser->equals($user)): ?>
   <div class="alert alert-success" style="display: none;"
        id="profile-image-success">
     Profile image updated
@@ -46,7 +46,7 @@ use dosamigos\fileupload\FileUpload;
         ],
     ]); ?>
 
-<?= Html::a('Удалить картинку',['/user/profile/delete-picture'],['class' => 'btn btn-danger']) ?>
+    <?= Html::a('Удалить картинку', ['/user/profile/delete-picture'], ['class' => 'btn btn-danger']) ?>
 
 <?php else: ?>
 
