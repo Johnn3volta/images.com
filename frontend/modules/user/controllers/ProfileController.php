@@ -132,6 +132,22 @@ class ProfileController extends Controller{
         throw new NotFoundHttpException();
     }
 
+    public function actionDeletePicture(){
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['/user/default/login']);
+        }
+            /* @var $currentuser User*/
+        $currentuser = Yii::$app->user->identity;
+
+        if($currentuser->deletePicture()){
+            Yii::$app->session->setFlash('success','Картинка удалена');
+        }else{
+            Yii::$app->session->setFlash('danger','Неизвестная ошибка');
+        }
+
+        return $this->redirect(['/user/profile/view','nickname' => $currentuser->getNickName()]);
+    }
+
 
 
 //    public function actionGenerate(){

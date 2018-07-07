@@ -45,6 +45,9 @@ use dosamigos\fileupload\FileUpload;
 
         ],
     ]); ?>
+
+<?= Html::a('Удалить картинку',['/user/profile/delete-picture'],['class' => 'btn btn-danger']) ?>
+
 <?php else: ?>
 
 

@@ -5,14 +5,14 @@ return [
     'id'                  => 'app-frontend',
     'basePath'            => dirname(__DIR__),
     'bootstrap'           => ['log'],
+    'language'            => 'Ru',
     'controllerNamespace' => 'frontend\controllers',
     'modules'             => [
         'user' => [
             'class' => 'frontend\modules\user\Module',
         ],
     ],
-    'components' => [
-
+    'components'          => [
         'request'      => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -45,12 +45,12 @@ return [
 //            'enableStrictParsing' => true,
             'showScriptName'  => false,
             'rules'           => [
-                'profile/<nickname:\w+>' => 'user/profile/view'
+                'profile/<nickname:\w+>' => 'user/profile/view',
             ],
         ],
-        'storage' => [
-            'class' => 'frontend\components\Storage'
-        ]
+        'storage'      => [
+            'class' => 'frontend\components\Storage',
+        ],
     ],
-    'params'     => $params,
+    'params'              => $params,
 ];
