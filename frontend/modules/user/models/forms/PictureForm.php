@@ -64,7 +64,7 @@ class PictureForm extends Model{
 
         $image->resize($width, $heigth, function ($constraint){
 //            для растянутых лиц
-//            $constraint->aspectRatio();
+            $constraint->aspectRatio();
 
             $constraint->upsize();
         })->save();

@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use frontend\models\User;
+use Yii;
 use yii\web\Controller;
 
 
@@ -15,13 +16,11 @@ class SiteController extends Controller{
      */
     public function actions(){
         return [
-            'error'   => [
+            'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
     }
-
-
 
     /**
      * Displays homepage.
@@ -29,8 +28,14 @@ class SiteController extends Controller{
      * @return mixed
      */
     public function actionIndex(){
-        $users = User::find()->all();
-        return $this->render('index',compact('users'));
-    }
+        if(\Yii::$app->user->isGuest){
+            return $this->redirect(['/user/default/login']);
+        }
+            /* @var $currentUser User*/
+        $currentUser = Yii::$app->user->identity;
+        $limit = Yii::$app->params['feedPostsLimit'];
+        $feedItems = $currentUser->getFeed($limit);
 
+        return $this->render('index', compact('feedItems','currentUser'));
+    }
 }

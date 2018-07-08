@@ -41,6 +41,7 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/user/default/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/user/default/login']];
+
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/user/default/logout'], 'post')
@@ -50,6 +51,7 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+        $menuItems[] = ['label' => 'Create post', 'url' => ['/post/default/create']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

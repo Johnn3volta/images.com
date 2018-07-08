@@ -20,6 +20,8 @@ class DefaultController extends Controller{
      * @return string|\yii\web\Response
      */
     public function actionCreate(){
+
+        if(Yii::$app->user->isGuest) return $this->redirect(['/user/default/login']);
         $model = new PostForm(Yii::$app->user->identity);
 
         if($model->load(Yii::$app->request->post())){

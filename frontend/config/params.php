@@ -7,7 +7,8 @@ return [
     'storageUri'     => '/uploads/',
     // Настройки могут быть вложенными
     'profilePicture' => [
-        'maxWidth'  => 400,
-        'maxHeight' => 400,
+        'maxWidth'  => 1024,
+        'maxHeight' => 768,
     ],
+    'feedPostsLimit' => 200
 ];
