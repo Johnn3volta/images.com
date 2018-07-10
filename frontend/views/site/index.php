@@ -37,10 +37,10 @@ $this->title = 'My Yii Application';
         </div>
         <div class="col-md-12">
           Likes: <span class="likes-count"><?= $feedItem->countLikes() ?></span>
-          <a href="#" class="btn btn-primary button-like" <?= ($currentUser && $currentUser->likesPost($feedItem->post_id)) ? "style='display:none'" : "" ?> data-id="<?= $feedItem->id ?>">
+          <a href="#" class="btn btn-primary button-like" <?= ($currentUser->likesPost($feedItem->post_id)) ? "style='display:none'" : "" ?> data-id="<?= $feedItem->id ?>">
             Like &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
           </a>
-          <a href="#" class="btn btn-primary button-unlike" <?= ($currentUser &&  $currentUser->likesPost($feedItem->post_id)) ? "" : "style='display:none'" ?>  data-id="<?= $feedItem->id ?>">
+          <a href="#" class="btn btn-primary button-unlike" <?= ($currentUser->likesPost($feedItem->post_id)) ? "" : "style='display:none'" ?>  data-id="<?= $feedItem->id ?>">
             Unlike &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
           </a>
         </div>

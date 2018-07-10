@@ -87,6 +87,7 @@ class Post extends \yii\db\ActiveRecord{
         return $redis->scard("post:{$this->getId()}:likes");
     }
 
+
     /**
      * @param \frontend\models\User $user
      *
